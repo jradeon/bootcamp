@@ -6,11 +6,7 @@ public class Principal {
 		Ejercicio1 e = new Ejercicio1();
 		e.inicializar();
 		e.jugada();
-		
-		
 
 	}
-	
-	
 
 }

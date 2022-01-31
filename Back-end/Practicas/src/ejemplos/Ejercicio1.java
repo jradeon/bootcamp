@@ -46,9 +46,8 @@ public class Ejercicio1 {
 			// Por último un bucle if que sirve para dar una pista y avisarte de la última
 			// oportunidad.
 
-			if (i < 9) {
-				System.out.print("Otro intento: ");
-			} else {
+			if (i == 9) {
+
 				System.out.print("Oh, oh... ÚLTIMO intento: ");
 			}
 
@@ -60,7 +59,7 @@ public class Ejercicio1 {
 
 		System.out.println("El juego consiste en averiguar un número secreto de 100 posibles.");
 
-		System.out.print("Tienes 10 intentos");
+		System.out.println("Tienes 10 intentos");
 
 	}
 
