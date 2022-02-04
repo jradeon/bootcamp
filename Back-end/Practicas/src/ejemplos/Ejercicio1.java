@@ -82,11 +82,11 @@ public class Ejercicio1 {
 			} else if (i == 10) { // Luego da la partida por perdida si ya has gastado 10 intentos.
 				System.out.println("Lo siento: ¡has perdido!. El número era el: " + a);
 				break;
-			} else if (a > b) // Si no es ninguno de los casos anteriores, comparamos números.
+			} else if (a > b) {// Si no es ninguno de los casos anteriores, comparamos números.
 				System.out.println("El número secreto es MAYOR que " + b);
-			else if (a < b)
+			} else if (a < b) {
 				System.out.println("El número secreto es MENOR que " + b);
-
+			}
 			// Por último un bucle if que sirve para dar una pista y avisarte de la última
 			// oportunidad.
 

@@ -10,7 +10,7 @@ public class Alimentos extends Productos {
 	public Alimentos(char tipo, int pesogramos, int codigo, String nombre, String descripción, int cantidad,
 			int precio) {
 		super(codigo, nombre, descripción, cantidad, precio);
-		this.tipo = tipo;
+		this.setTipo(tipo);
 		this.pesogramos = pesogramos;
 	}
 
@@ -41,11 +41,13 @@ public class Alimentos extends Productos {
 	}
 
 	public int contarProducto() {
-		int cant = 0;
-		if (tipo == 'L' || 'l') {
-			System.out.println("Cantidad de leche" + getCantidad());
+		cantidad = 0;
+
+		if (tipo == 'L'||'l') {
+			System.out.println("Cantidad de leche" + getCantidad()); 
+		} else {
+			System.out.println("Error al introducir la cantidad");
 		}
-		return cant;
 	}
 
 	@Override

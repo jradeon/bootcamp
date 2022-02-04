@@ -43,6 +43,7 @@ public abstract class Productos implements Calculable {
 			this.nombre = nombre;
 		}else {
 			System.out.println("El nombre no debe ir vacío");
+		}
 	}
 
 	public String getDescripción() {
