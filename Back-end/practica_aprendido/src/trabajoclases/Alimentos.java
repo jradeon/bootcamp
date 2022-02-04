@@ -41,13 +41,14 @@ public class Alimentos extends Productos {
 	}
 
 	public int contarProducto() {
-		cantidad = 0;
-
-		if (tipo == 'L'||'l') {
-			System.out.println("Cantidad de leche" + getCantidad()); 
+		int cant = 0;
+		if (tipo == 'L') {
+			System.out.println("Cantidad de leche" + getCantidad());
 		} else {
 			System.out.println("Error al introducir la cantidad");
 		}
+		return cant;
+
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class Alimentos extends Productos {
 
 	// Método abstracto de Productos lo sobreescribimos aquí, ya que se hereda
 	public void mostrarDatos() {
-		System.out.println(super.toString() + "Alimentos " + "tipo=" + tipo + ", pesogramos=" + pesogramos);
+		System.out.println(toString() + "Alimentos " + "tipo= " + tipo + ", pesogramos= " + pesogramos);
 	}
 
 }

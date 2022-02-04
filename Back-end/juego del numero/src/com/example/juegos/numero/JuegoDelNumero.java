@@ -12,7 +12,7 @@ import com.example.juegos.numero.JuegoException;
  * @version 1.0
  */
 public class JuegoDelNumero implements Juego<String> {
-	int numeroBuscado;
+    int numeroBuscado;
     private int intentos;
     private boolean encontrado;
     private String resultado;

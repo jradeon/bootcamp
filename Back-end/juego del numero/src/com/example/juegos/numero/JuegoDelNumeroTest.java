@@ -2,6 +2,7 @@ package com.example.juegos.numero;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -56,20 +57,11 @@ class JuegoDelNumeroTest {
 		
 		@Test
 		void test_Hasperdido() throws JuegoException {
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			juego.jugada(1);
-			assertAll("Jugada", () -> assertEquals("Upsss! Se acabaron los intentos, el número era el ", juego.getResultado()),
-					() -> assertEquals(1, juego.getJugada()));
+			for(intento = 1)
 		}
-	}
+			
+		}
+	
 
 	@Test
 	void testJugadaInt() {
