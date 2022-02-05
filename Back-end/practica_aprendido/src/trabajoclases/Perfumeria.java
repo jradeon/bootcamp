@@ -7,12 +7,12 @@ public class Perfumeria extends Productos {
 	public Perfumeria(int ml, char aroma, int codigo, String nombre, String descripción, int cantidad, int precio) {
 		super(codigo, nombre, descripción, cantidad, precio);
 		this.ml = ml;
-		this.aroma = aroma;
+		this.setAroma(aroma);
 	}
 
-	public Perfumeria() {
-
-	}
+//	public Perfumeria() {
+//
+//	}
 
 	public int getMl() {
 		return ml;
@@ -36,14 +36,14 @@ public class Perfumeria extends Productos {
 
 	public int contarProducto() {
 		int cant = 0;
-		if (getNombre().equalsIgnoreCase("cremas")) {
+		if (getNombre().equalsIgnoreCase("cremas")) { // equalsIgnoreCase compara dos String para ver si son =
 			System.out.println("Cantidad de cremas " + getCantidad());
 		}
 		return cant;
 	}
 
 	public void mostrarDatos() {
-		System.out.println(toString() + "Perfumeria " + "ml= " + ml + ",aroma= " + aroma);
+		System.out.println(super.toString() + " Perfumeria " + " ml= " + ml + ", aroma= " + aroma);
 	}
 
 	@Override

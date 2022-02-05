@@ -3,9 +3,9 @@ package trabajoclases;
 import java.util.ArrayList;
 
 public class RegistroProductos {
-	ArrayList<Productos> productos = new ArrayList<Productos>();
+	ArrayList<Productos> productos = new ArrayList<Productos>(); // Array list de Objeto productos
 
-	public void agregarProducto(Productos nuevoProducto) { // nuebo objetvo nuevoProducto
+	public void agregarProducto(Productos nuevoProducto) { // Objeto Productos ->> nuevo objeto nuevoProducto
 		if (this.verificarProducto(nuevoProducto.getCodigo()) == false) {
 			productos.add(nuevoProducto);
 		} else {
@@ -27,10 +27,10 @@ public class RegistroProductos {
 		for (Productos temporalProductos : productos) { // foreach
 			if (temporalProductos.getCodigo() == codigo) {
 				existe = true;
-				break;
 			}
 		}
-		return existe;
+			return existe;
+				
 	}
 
 	// Si el producto del nombre que recibo es igual al nombre de la posición que le

@@ -67,22 +67,34 @@ public abstract class Productos implements Calculable {
 	}
 
 	public void setPrecio(int precio) {
-		this.precio = precio;
+		if(precio > 0 ) {
+			this.precio = precio;	
+		} else {
+			System.out.println("Precio debe ser mayor a cero");
+		}
+		
+	}
+	
+	// return devuleve un String
+	public String toString() {
+		return "Productos : " + "Código: " + codigo + " Nombre: " + nombre + " Descripción: " + descripción + 
+				" Cantidad: " + cantidad + " Precio: " + precio;
+				
 	}
 
-	public void mostrarDatos() {
-	}
+//	public void mostrarDatos() {
+//	}
 
 	public abstract int contarProducto();
 
-	public int calcularTotal(int cantidad, String dia) {
-		int total = 0;
-		int descuento = 0;
-
-		descuento = calcularPrecioFinal(precio);
-		total = this.precio * cantidad - descuento * cantidad;
-		return total;
-
-	}
+//	public int calcularTotal(int cantidad, String dia) {
+//		int total = 0;
+//		int descuento = 0;
+//
+//		descuento = calcularPrecioFinal(precio);
+//		total = this.precio * cantidad - descuento * cantidad;
+//		return total;
+//
+//	}
 
 }

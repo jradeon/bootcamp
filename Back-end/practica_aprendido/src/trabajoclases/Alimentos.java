@@ -14,9 +14,9 @@ public class Alimentos extends Productos {
 		this.pesogramos = pesogramos;
 	}
 
-	public Alimentos() {
-
-	}
+//	public Alimentos() {
+//
+//	}
 
 	// Setters and Getters
 	public char getTipo() {
@@ -62,8 +62,9 @@ public class Alimentos extends Productos {
 	}
 
 	// Método abstracto de Productos lo sobreescribimos aquí, ya que se hereda
+	// llamamos al método toString con el super y lo concatenamos a alimentos y tipo
 	public void mostrarDatos() {
-		System.out.println(toString() + "Alimentos " + "tipo= " + tipo + ", pesogramos= " + pesogramos);
+		System.out.println(super.toString() + " Alimentos " + " tipo= " + tipo + ", pesogramos= " + pesogramos);
 	}
 
 }
