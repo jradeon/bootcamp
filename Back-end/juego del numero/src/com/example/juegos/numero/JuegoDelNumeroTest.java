@@ -57,7 +57,7 @@ class JuegoDelNumeroTest {
 		
 		@Test
 		void test_Hasperdido() throws JuegoException {
-			for(intento = 1)
+			
 		}
 			
 		}

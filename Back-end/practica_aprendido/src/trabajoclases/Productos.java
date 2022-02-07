@@ -82,8 +82,6 @@ public abstract class Productos implements Calculable {
 				
 	}
 
-//	public void mostrarDatos() {
-//	}
 
 	public abstract int contarProducto();
 

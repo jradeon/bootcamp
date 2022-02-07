@@ -1,5 +1,8 @@
 package baraja;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //Crear las clases para implementar juegos que utilizan una baraja de naipes.
 //Los naipes tienen dos propiedades distintivas: valor y palo. 
 //Probar la funcionalidad de barajar, repartir, comparar, … 
@@ -7,22 +10,40 @@ package baraja;
 
 public class Juego {
 
-	int[] numeros = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-	String pal[] = { "espada", "copas", "baston", "oros" };
-
 	public void generarCartas() {
-
-		int[] revolver = new int[40];
-		int i = 0;
-
-		revolver[i] = (int) (Math.random() * numeros.length); // genera los numeros aleatorios
-
-		for (i = 1; i < revolver[i]; i++) {
-			revolver[i] = (int) (Math.random() * numeros.length);
-			System.out.println(revolver[i]);
-
-		}
+        Naipe n = new Naipe(Naipe.Palos.oros, Naipe.Numeros.REY); 
+        List<Naipe> baraja = new ArrayList<Naipe> ();
+        
+        for(var palo : Naipe.Palos.values()) //values es la forma de devolver la posición con el enum
+            for(var numero : Naipe.Numeros.values())
+            	baraja.add(new Naipe(palo,numero));
+        			
+            	 
+        	
+        baraja.forEach(System.out::println);	
+//      baraja.forEach(item-> System.out.println(item.toString()));
+        
+     Public void repartirCartas() {
+    	 
+    	
+    	 
+     }
+        
+//		int[] generarnum = new int[40];
+//		String [] generarpalos = new String [4];
+//		int i = 0;
+//
+//		generarnum[i] = (int) (Math.random() * numeros.length); // genera los numeros aleatorios
+//		generarpalos[j] = 
+//
+//		for (i = 1; i < generarnum[i]; i++) {
+//			generarnum[i] = (int) (Math.random() * numeros.length);
+//			System.out.println(generarnum[i]);
+//
+//		}
 	}
+	
+	
 
 //	    public void repartirCartas(){       
 //	        for(int k=0; k<totalCartas; k++){ 

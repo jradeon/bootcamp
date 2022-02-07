@@ -43,7 +43,7 @@ public class Perfumeria extends Productos {
 	}
 
 	public void mostrarDatos() {
-		System.out.println(super.toString() + " Perfumeria " + " ml= " + ml + ", aroma= " + aroma);
+		System.out.println(toString() + " Perfumeria " + " ml= " + ml + ", aroma= " + aroma);
 	}
 
 	@Override

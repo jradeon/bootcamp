@@ -1,26 +1,39 @@
 package calculadora;
 
-import java.util.Scanner;
 
 public class Calculadora {
 
-	public static void main() {
-		Scanner entrada = new Scanner(System.in);
+			
+		private int num1;
+		private int num2;
+		private int resultado;
 		
-		double dividendo =0;
-		double divisor= 0;
-		double resultado= 0;
 		
-	
-		System.out.println("Introduce Dividendo: ");
-		 dividendo= entrada.nextInt();
-
-		System.out.println("Introduce Divisor: ");
-		 divisor= entrada.nextInt();
-		 
-		 resultado = dividendo / divisor;
-		 System.out.println("RESULTADO: " + resultado);
-		
+		public Calculadora(int num1, int num2) {
+			this.num1 = num1;
+			this.num2 = num2;
+			
 	}
+		public Calculadora() {
+			// TODO Auto-generated constructor stub
+		}
+
+		
+
+		public int sumar (int num1, int num2 ) {
+			return resultado = num1+num2;
+			
+		}
+
+		public int restar (int num1, int num2) {
+			return resultado = num1-num2;
+		}
+		
+		public int dividir (int num1, int num2) {
+			return resultado = num1/num2;
+		}
+	
+	
+	
 
 }
