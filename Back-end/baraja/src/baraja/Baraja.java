@@ -41,7 +41,7 @@ public class Baraja {
 		for (int carta = 0; carta < numCartas; carta++) 
 			for (int jugador = 0; jugador < numJugadores; jugador++) {
 				jugadores.get(jugador).add(cartas.get(0));
-				cartas.remove(0);
+				cartas.remove(0); //cartas.poll añade y elimina // push para meter en el mazo
 				if (cartas.size() == 0) {
 					break;
 				}

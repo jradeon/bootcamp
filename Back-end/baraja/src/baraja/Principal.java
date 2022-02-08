@@ -7,11 +7,9 @@ public class Principal {
 		b.barajar();
 //        cartas.forEach(System.out::println);	
 //		b.getCartas().forEach(item-> System.out.println(item.toString()));
-		
-		
  		var manos = b.repartirCartas(7, 5);
  		manos.forEach(mano -> {
- 			 System.out.println("Jugador " + i++);
+ 			 System.out.println("***Jugador*** " + i++ + "\n" );
  			mano.forEach(carta -> System.out.println(carta));
  		});
 		 System.out.println("quedan");
