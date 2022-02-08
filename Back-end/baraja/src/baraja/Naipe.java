@@ -8,7 +8,7 @@ public class Naipe {
 	public enum Numeros {
 		AS(1), DOS(2), TRES(3), CUATRO(4), CINCO(5), SEIS(6), SIETE(7), SOTA(8), CABALLO(9), REY(10);
 
-		private int numericValue; 
+		private int numericValue;
 
 		Numeros(int value) { // le pasa cualquier valor y me lo guarda en numericValue
 			numericValue = value;
@@ -49,20 +49,18 @@ public class Naipe {
 		}
 	}
 
-	
 	private Palos palo;
 	private Numeros numero;
-	
-	public Naipe (Palos palo, Numeros numero) {
-		this.palo= palo;
-		this.numero= numero;
-		
+
+	public Naipe(Palos palo, Numeros numero) {
+		this.palo = palo;
+		this.numero = numero;
+
 	}
 
 	@Override
 	public String toString() {
 		return "Naipe [palo=" + palo + ", numero=" + numero + "]";
 	}
-	
-	
+
 }
