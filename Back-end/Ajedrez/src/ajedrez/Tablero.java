@@ -21,9 +21,14 @@ public class Tablero implements Cloneable {
 
 	private List<Pieza> pieza = new ArrayList<Pieza>();
 
-	public int escaque (int a, int b) {
-		return a;
+	public Pieza getEscaque (int a, int b) {
+		return null;
 	}
+
+	public void setEscaque (int a, int b, Pieza p) {
+		
+	}
+
 
 	public void escaque(Posicion posicion) {
 	
@@ -51,6 +56,8 @@ public class Tablero implements Cloneable {
 	public void quitarPieza(Posicion posicion) {
 		
 	}
+	
+	//*************Mover**************
 
 	public List<Pieza> getPieza() {
 		return pieza;
