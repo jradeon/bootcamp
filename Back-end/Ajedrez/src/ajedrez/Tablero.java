@@ -17,9 +17,16 @@ import java.util.List;
 //+ ColorEscaque(Integer, Integer) : Color
 //+ HayPiezasEntre(Movimiento) : Boolean
 
+//32 piezas
+//poner y quitar piezas, mover .. 
+
 public class Tablero implements Cloneable {
 
+	private static final String Tablero = null;
+	
 	private List<Pieza> pieza = new ArrayList<Pieza>();
+
+	private Color color;
 
 	public Pieza getEscaque (int a, int b) {
 		return null;
@@ -58,6 +65,25 @@ public class Tablero implements Cloneable {
 	}
 	
 	//*************Mover**************
+	
+	public void mover (Movimiento mover) {
+		
+	}
+	
+	private void clone(String tablero) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Color colorEscaque(int blanco, int negro) {
+		
+		return color;
+		
+	}
+	
+	public boolean hayPiezasEntre (Movimiento mov ) {
+		return false;
+	}
 
 	public List<Pieza> getPieza() {
 		return pieza;
@@ -66,5 +92,6 @@ public class Tablero implements Cloneable {
 	public void setPieza(List<Pieza> pieza) {
 		this.pieza = pieza;
 	}
+
 
 }
