@@ -12,15 +12,28 @@ public class Posicion {
  
  
  	public Posicion (int fila, int columna) {
+ 		if (columna < 1 || columna > 8 || fila < 1 || fila > 8) {
+			throw new IllegalArgumentException("La fila y la columna deben estar entre 0 y 8");
+ 		}else {
  		this.fila = fila;
  		this.columna= columna;
+ 		}
  	}
  	
- 	public Posicion (char fila, char columna) {
- 		this.fila = fila;
- 		this.columna= columna;
- 		
- 	}
+ 	public Posicion(char fila, char columa) throws JuegoException {
+        if ('A' <= columna && columna <= 'H') {
+            this.columna = columna - 'A' + 1;
+        } else {
+            throw new JuegoException("La columna debe estar entra la A y la H");
+        }
+        if ('1' <= fila && fila <= '8') {
+            this.fila = fila - '0' + 1;
+        } else {
+            throw new JuegoException("La fila debe estar entra el 1 y el 8");
+        }
+    }
+ 	
+ 	
 
 	public int getFila() {
 		return fila;

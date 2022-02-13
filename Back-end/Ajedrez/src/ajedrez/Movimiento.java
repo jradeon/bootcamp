@@ -44,11 +44,7 @@ public class Movimiento {
 	}
 
 	public boolean esHorizontal() { // cambia la columna
-		if (posini.getFila() == posfin.getFila()) {
-			return true;
-		} else {
-			return false;
-		}
+		return posini.getFila() == posfin.getFila();
 	}
 
 	public boolean esDiagonal() { // si el desplazamiento fila columna es igual
@@ -65,16 +61,20 @@ public class Movimiento {
 		return Math.abs(posini.getColumna()-posfin.getColumna());
 	}
 
-	public int deltaFila() {
-		if (posfin.getColumna() > posini.getColumna()) return 1;
-		else if (posfin.getColumna() == posini.getColumna()) return 0;
-		else if (posfin.getColumna() < posini.getColumna()) return -1;
+	public int deltaFila() { // para saber si se mueve positivo o negativo 
+		int mov =0;
+		if (posfin.getColumna() > posini.getColumna()) mov = 1;
+		else if (posfin.getColumna() == posini.getColumna()) mov = 0;
+		else if (posfin.getColumna() < posini.getColumna()) mov = -1;
+		return mov;
 	}
 
 	public int deltaColumna() {
-		if (posfin.getFila() > posini.getFila()) return 1;
-		else if (posfin.getFila() == posini.getFila()) return 0;
-		else if (posfin.getFila() < posini.getFila()) return -1;
+		int mov2= 0;
+		if (posfin.getFila() > posini.getFila()) mov2 = 1;
+		else if (posfin.getFila() == posini.getFila()) mov2 = 0;
+		else if (posfin.getFila() < posini.getFila()) mov2 = -1;
+		return mov2;
 	}
 
 }
