@@ -1,0 +1,25 @@
+Ejercicios de bases de datos
+•	Obtener todos los actores de nombre ‘NICK’.
+	SELECT * from actor WHERE first_name='nick';
+
+•	Obtener una lista con todos los distritos distintos (district en address).
+	SELECT distinct district from address;
+
+•	Cuenta todos los distritos con nombre california
+	SELECT count(district) california from address WHERE district= 'california'; 
+
+•	Obtener las películas sobre agentes secretos (description contiene ‘Secret Agent’).
+	SELECT * FROM film WHERE description LIKE '%secret agent%';
+
+•	Mostrar la lista de las películas mas caras (coste por minuto)
+	SELECT title, rental_rate, LENGTH , rental_rate/LENGTH precioMinuto FROM film ORDER BY rental_rate/LENGTH DESC;
+
+•	Obtener los códigos y medias de gasto de los clientes que han gastado mas de 100 en menos de 25 operaciones.
+	SELECT count(customer_id) operaciones , customer_id, AVG(amount) FROM payment  
+ 	GROUP BY customer_id HAVING sum(amount) > 100 and COUNT(customer_id) <25;
+
+•	Obtener los 5 nombres de actor más repetidos (aprox).
+	SELECT first_name, COUNT(FIRST_NAME) repetidos FROM actor GROUP BY first_name HAVING repetidos=5;
+
+•	Para felicitar el año nuevo chino se necesita el listado con los datos postales de los clientes residentes en China y Taiwan
+	SELECT postal_code, district FROM address WHERE district='CHINA' AND district='TAIWAN';
