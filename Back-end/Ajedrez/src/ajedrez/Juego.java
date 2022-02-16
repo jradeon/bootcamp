@@ -51,15 +51,31 @@ public class Juego {
 	}
 
 	public Color getElTurno() throws JuegoException {
-		if(!partidaActiva)
+		if (!partidaActiva)
 			throw new JuegoException("La partida aun no ha comenzado.");
 		return elTurno;
 	}
 
 	public Tablero getTablero() throws JuegoException {
-		if(!partidaActiva)
+		if (!partidaActiva)
 			throw new JuegoException("La partida aun no ha comenzado.");
 		return (Tablero) tablero.clone();
+	}
+
+	public void jugar(String jugada) throws JuegoException {
+		Movimiento movimiento = new Movimiento(jugada);
+		if (!tablero.hayPieza(movimiento.getPosini())) {
+			throw new JuegoException("No hay pieza que mover");
+		}
+
+		if (tablero.getEscaque(movimiento.getPosini()).getelColor() != elTurno) { // significa que la pieza no es mia
+			throw new JuegoException("No puedes mover una pieza que no es tuya");
+		}
+		if (tablero.hayPieza(movimiento.getPosfin())
+				&& tablero.getEscaque(movimiento.getPosfin()).getelColor() == elTurno)
+			throw new JuegoException("No te puedes comer tus piezas");
+		tablero.getEscaque(movimiento.getPosini()).mover(movimiento, tablero);
+
 	}
 
 }

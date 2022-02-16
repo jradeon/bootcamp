@@ -13,7 +13,7 @@ public class Posicion {
  
  	public Posicion (int fila, int columna) {
  		if (columna < 1 || columna > 8 || fila < 1 || fila > 8) {
-			throw new IllegalArgumentException("La fila y la columna deben estar entre 0 y 8");
+			throw new IllegalArgumentException("La fila y la columna deben estar entre 1 y 8");
  		}else {
  		this.fila = fila;
  		this.columna= columna;

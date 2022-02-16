@@ -61,15 +61,15 @@ class PosicionTest {
 		@Test
 		void char_char_Fallo() {
 			assertAll("Posiciones invalidas",
-					() -> assertThrows(IllegalArgumentException.class, () -> new Posicion('I', '9')),
-					() -> assertThrows(IllegalArgumentException.class, () -> new Posicion('J', '4')),
-					() -> assertThrows(IllegalArgumentException.class, () -> new Posicion('K', '0')));
+					() -> assertThrows(IllegalArgumentException.class, () -> new Posicion('9', 'I')),
+					() -> assertThrows(IllegalArgumentException.class, () -> new Posicion('4', 'J')),
+					() -> assertThrows(IllegalArgumentException.class, () -> new Posicion('0', 'K')));
 		}
 
 		@Test
 		void testEquals() throws JuegoException {
 			posicion1 = new Posicion(2, 5);
-			posicion2 = new Posicion('B', '5');
+			posicion2 = new Posicion('5', 'B');
 			posicion3 = new Posicion(6, 3);
 
 			assertAll("Comparacion", 

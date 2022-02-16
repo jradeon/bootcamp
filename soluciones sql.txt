@@ -23,3 +23,54 @@ Ejercicios de bases de datos
 
 •	Para felicitar el año nuevo chino se necesita el listado con los datos postales de los clientes residentes en China y Taiwan
 	SELECT postal_code, district FROM address WHERE district='CHINA' AND district='TAIWAN';
+
+•	Mostrar los datos de las tiendas, conocidas por la ciudad y país donde están ubicadas, indicando el nombre del gerente, el numero de películas en inventario, el numero de títulos diferentes y el número de clientes atendidos.
+	SELECT store.store_id, city.city ciudad, country.country "Pais", staff.first_name, COUNT(inventory.film_id) nPeliculas, COUNT(distinct inventory.film_id) titulosDiferentes, COUNT(customer.store_id) clientesAtendidos 
+	FROM staff
+	INNER JOIN address ON address.address_id = staff.address_id
+	INNER JOIN store ON store.address_id = address.address_id
+	INNER JOIN inventory ON inventory.store_id = store.store_id
+	INNER JOIN customer ON customer.store_id = store.store_id
+	INNER JOIN city ON city.city_id = address.city_id
+	INNER JOIN country ON country.country_id = city.country_id
+	GROUP BY store.store_id
+
+
+	Mal
+
+•	Obtener el listado detallado de alquileres indicando el identificador de alquiler, el titulo alquilado, las fechas de alquiler, devolución y tiempo transcurrido, nombres del cliente (nombre con apellidos), 
+empleado (nombre con apellidos) y tienda (ciudad, país).
+	SELECT rental.rental_id, film.title "titulo", rental.rental_date "Fecha de alquiler", rental.return_date "Fecha devolución", DATEDIFF(rental.return_date, rental.rental_date) "Tiempo transcurrido", customer.first_name "Nombre cliente", customer.last_name "Apellido cliente", staff.first_name "Nombre empleado", staff.last_name "Apellido empleado", country.country "País", city.city "Ciudad"
+	FROM rental
+	INNER JOIN staff ON staff.staff_id = rental.staff_id
+	INNER JOIN store ON store.store_id = staff.staff_id
+	INNER JOIN address ON store.address_id = address.address_id
+	INNER JOIN city ON city.city_id = address.city_id
+	INNER JOIN country ON country.country_id = city.country_id
+	INNER JOIN customer ON customer.customer_id = rental.rental_id
+	INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+	INNER JOIN film ON film.film_id = inventory.film_id;
+
+•	Generar la lista diaria de alquileres vencidos no devueltos para poder llamar a los clientes y pedirles que los devuelvan, para ello debe mostrar las fechas de alquiler y vencimiento, el teléfono y nombre del cliente, así como el titulo de la película, priorizando los que mas tiempo llevan vencidos.
+	
+	SELECT customer.first_name "Nombre Cliente", customer.last_name "Apellidos", customer.customer_id, 
+	address.phone "telefono", rental.rental_date "fecha alquiler", rental.return_date "fecha vencimiento", film.title 
+	"titulo pelicula", date_add(rental.rental_date, INTERVAL film.rental_duration DAY) "fecha devolución max"
+	FROM customer
+	INNER JOIN address ON address.address_id = customer.address_id
+	INNER JOIN rental ON rental.customer_id = customer.customer_id
+	INNER JOIN inventory ON inventory.inventory_id = rental.inventory_id
+	INNER JOIN film ON film.film_id = inventory.film_id
+	WHERE rental.return_date Is NULL AND NOW()>date_add(rental.rental_date, INTERVAL film.rental_duration DAY)
+	ORDER BY "fecha devolución max" DESC
+
+•	Elaborar el ranking de los países que más alquilan las películas de GINA DEGENERES.
+
+	SELECT COUNT(inventory.film_id) "VECES PELICULA", country.country "PAISES", actor.first_name "NOMBRE"
+	FROM film 
+	INNER JOIN inventory ON inventory.inventory_id = film.film_id
+	INNER JOIN country.country_id = actor.actor_id
+	INNER JOIN actor.actor_id = rental.rental_id
+	GROUP BY country.country 
+	HAVING actor.first_name LIKE "%GINA%" DESC;
+
