@@ -68,8 +68,8 @@ class PosicionTest {
 
 		@Test
 		void testEquals() throws JuegoException {
-			posicion1 = new Posicion(2, 5);
-			posicion2 = new Posicion('5', 'B');
+			posicion1 = new Posicion(4, 6);
+			posicion2 = new Posicion('D', '6');
 			posicion3 = new Posicion(6, 3);
 
 			assertAll("Comparacion", 
