@@ -42,7 +42,8 @@ class PosicionTest {
 
 		@Test
 		void char_char() {
-			assertAll("Posiciones validas", () -> assertEquals(1, new Posicion('7', 'A').getColumna()),
+			assertAll("Posiciones validas", 
+					() -> assertEquals(1, new Posicion('7', 'A').getColumna()),
 					() -> assertEquals(8, new Posicion('7', 'H').getColumna()),
 					() -> assertEquals(2, new Posicion('2', 'A').getFila()),
 					() -> assertEquals(8, new Posicion('2', 'H').getColumna()),
@@ -68,8 +69,8 @@ class PosicionTest {
 
 		@Test
 		void testEquals() throws JuegoException {
-			posicion1 = new Posicion(4, 6);
-			posicion2 = new Posicion('D', '6');
+			posicion1 = new Posicion(6, 4);
+			posicion2 = new Posicion('6', 'D');
 			posicion3 = new Posicion(6, 3);
 
 			assertAll("Comparacion", 

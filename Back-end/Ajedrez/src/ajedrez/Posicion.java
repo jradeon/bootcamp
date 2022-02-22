@@ -20,16 +20,16 @@ public class Posicion {
  		}
  	}
  	
- 	public Posicion(char fila, char columa) throws JuegoException {
+ 	public Posicion(char fila, char columna) {
         if ('A' <= columna && columna <= 'H') {
             this.columna = columna - 'A' + 1;
         } else {
-            throw new JuegoException("La columna debe estar entra la A y la H");
+            throw new IllegalArgumentException("La columna debe estar entra la A y la H");
         }
         if ('1' <= fila && fila <= '8') {
-            this.fila = fila - '0' + 1;
+            this.fila = fila - '0';
         } else {
-            throw new JuegoException("La fila debe estar entra el 1 y el 8");
+            throw new IllegalArgumentException("La fila debe estar entra el 1 y el 8");
         }
     }
  	
