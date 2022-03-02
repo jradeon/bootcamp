@@ -27,7 +27,7 @@ import com.juanantonio.app.service.UserService;
 //ResponseBody  para indicar que el valor de retorno de nuestros métodos
 // debe usarse como el cuerpo de respuesta de la solicitud (por defecto un Json)
 
-@RequestMapping("/api/users")
+@RequestMapping("/api/users") // si todos los métodos usan la misma ruta
 
 // El controlador se va a comunicar con los métodos que hemos definido en nuestra interface
 // Service
@@ -36,7 +36,7 @@ public class UserController {
 
 	// Hay que hacer una infección de dependencias
 
-	@Autowired
+	@Autowired //indicación al inyector de dependecnias para que pueda iyectar instancias
 	private UserService userService;
 
 	// Create a new user
@@ -50,7 +50,7 @@ public class UserController {
 	@GetMapping("/{id}") // operación get conseguir un usario de la base de datos
 							// los valores variables se ponen entre corchetes
 
-	public ResponseEntity<?> read(@PathVariable Long userId) {
+	public ResponseEntity<?> read(@PathVariable ("id") Long userId) {
 
 		// Controlar excepciones por si el id no existe
 		Optional<User> oUser = userService.findById(userId);
@@ -59,7 +59,7 @@ public class UserController {
 		}
 
 		// si todo ha ido bien con el ok, devolvemos nuestro ususario
-		return ResponseEntity.ok(oUser);
+		return ResponseEntity.ok(oUser.get());
 
 	}
 

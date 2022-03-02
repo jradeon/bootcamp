@@ -8,72 +8,71 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table (name ="users") // creamos la tabla users 
-public class User implements Serializable{
-	
-/**
-	 * 
-	 */
+@Table(name = "users") // creamos la tabla users
+public class User implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
-@Id // esto es que el id va a ser de tipo id 
-@GeneratedValue(strategy = GenerationType.IDENTITY)
-private Long id;
+	@Id // esto es que el id va a ser de tipo id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 //para el mapeo a nuestra base de datos
-@Column( length = 50)
+	@NotBlank // para que no se puedan meter datos en blanco
+	@Column(length = 50)
+	private String name;
 
-private String name;
+	@NotBlank
+	@Column(length = 50)
+	private String surname;
 
-private String surname;
+	@NotBlank
+	@Column(name = "mail", nullable = false, length = 50, unique = true)
+	private String email;
 
-@Column (name="mail", nullable = false, length = 50, unique = true)
-private String email;
+	private boolean enabled;
 
-private boolean enabled;
+	public Long getId() {
+		return id;
+	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public Long getId() {
-	return id;
-}
+	public String getName() {
+		return name;
+	}
 
-public void setId(Long id) {
-	this.id = id;
-}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-public String getName() {
-	return name;
-}
+	public String getSurname() {
+		return surname;
+	}
 
-public void setName(String name) {
-	this.name = name;
-}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-public String getSurname() {
-	return surname;
-}
+	public String getEmail() {
+		return email;
+	}
 
-public void setSurname(String surname) {
-	this.surname = surname;
-}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-public String getEmail() {
-	return email;
-}
+	public boolean getEnabled() {
+		return enabled;
+	}
 
-public void setEmail(String email) {
-	this.email = email;
-}
-
-public boolean getEnabled() {
-	return enabled;
-}
-
-public void setEnabled(boolean enabled) {
-	this.enabled = enabled;
-}
-
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
 }
