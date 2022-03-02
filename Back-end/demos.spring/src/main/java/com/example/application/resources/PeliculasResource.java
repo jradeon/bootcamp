@@ -61,14 +61,13 @@ public class PeliculasResource {
 	}
 
 	@PostMapping
-	@Transactional 
+	@Transactional
 	public ResponseEntity<Object> create(@Valid @RequestBody PeliculaEditDTO item)
 			throws InvalidDataException, DuplicateKeyException, NotFoundException {
 		var entity = PeliculaEditDTO.from(item);
 		if (entity.isInvalid())
 			throw new InvalidDataException(entity.getErrorsMessage());
 		entity = srv.add(entity);
-		entity = srv.getOne(entity.getFilmId());
 		item.update(entity);
 		srv.change(entity);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -79,7 +78,7 @@ public class PeliculasResource {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@Transactional // como se van a modificar muchas tablas hay que poner transactional
+	@Transactional
 	public void update(@PathVariable int id, @Valid @RequestBody PeliculaEditDTO item)
 			throws InvalidDataException, NotFoundException {
 		if (id != item.getFilmId())
