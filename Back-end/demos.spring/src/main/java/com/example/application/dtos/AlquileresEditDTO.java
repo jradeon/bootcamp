@@ -1,6 +1,7 @@
 package com.example.application.dtos;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.DecimalMin;
@@ -18,6 +19,8 @@ import com.example.domains.entities.Actor;
 import com.example.domains.entities.Category;
 import com.example.domains.entities.Film;
 import com.example.domains.entities.Language;
+import com.example.domains.entities.Rental;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import io.swagger.annotations.ApiModel;
@@ -25,8 +28,47 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Value;
 
 @Value
-@ApiModel(value = "Película editable", description = "Version editable de las películas.")
-public class PeliculaEditDTO {
+@ApiModel(value = "Alquileres editables", description = "Version editable de los alquileres.")
+public class AlquileresEditDTO {
+	
+	@JsonProperty("id")
+	private int rentalId;
+	@JsonProperty("Cliente")
+	private int customer;
+	@JsonProperty("Pelicula")
+	private int inventory;
+	@JsonProperty("Empleado")
+	private int empleado;
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@JsonProperty("Fecha de Alquiler")
+	private Date rentalDate;
+	@JsonProperty("Fecha devolución")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	private Date returnDate;
+	private List<Integer> pagos;
+
+	public static AlquileresDetailsDTO from(Rental source) {
+		return new AlquileresDetailsDTO(
+				source.getRentalId(),
+				source.getCustomer().getCustomerId(),
+				source.getInventory().getInventoryId(),
+				source.getStaff().getStaffId(),
+				source.getRentalDate(),
+				source.getReturnDate(),
+				null
+		// source.getCustomer().getFirstName() + " " +
+		// source.getCustomer().getLastName(),
+		// source.getInventory().getFilm().getTitle(), // acceder a través de las tablas
+		// source.getStaff().getFirstName() + " " + source.getStaff().getLastName(),
+		// source.getRentalDate(),
+
+		);
+	}
+}
+	
+	
+	
+	
 	@JsonProperty("id")
 	private int filmId;
 	@NotBlank
@@ -70,8 +112,8 @@ public class PeliculaEditDTO {
 	@ApiModelProperty(value = "Lista de identificadores de categoría.")
 	private List<Integer> categorias;
 
-	public static PeliculaEditDTO from(Film source) {
-		return new PeliculaEditDTO(
+	public static AlquileresEditDTO from(Film source) {
+		return new AlquileresEditDTO(
 				source.getFilmId(), 
 				source.getTitle(),
 				source.getDescription(),
@@ -87,7 +129,7 @@ public class PeliculaEditDTO {
 				source.getFilmCategories().stream().map(item -> item.getCategory().getCategoryId()).sorted().toList()
 				);
 	}
-	public static Film from(PeliculaEditDTO source) {
+	public static Film from(AlquileresEditDTO source) {
 		return new Film (
 				source.getFilmId(), 
 				source.getTitle(),

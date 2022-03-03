@@ -2,9 +2,19 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import com.example.domains.core.entities.EntityBase;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -14,7 +24,7 @@ import java.util.List;
 @Entity
 @Table(name="rental")
 @NamedQuery(name="Rental.findAll", query="SELECT r FROM Rental r")
-public class Rental implements Serializable {
+public class Rental extends EntityBase<Rental> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,9 +33,14 @@ public class Rental implements Serializable {
 	private int rentalId;
 
 	@Column(name="last_update")
+	@Generated(value = GenerationTime.ALWAYS)
+	@PastOrPresent
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Timestamp lastUpdate;
-
+	
+	
 	@Temporal(TemporalType.TIMESTAMP)
+	@NotNull
 	@Column(name="rental_date")
 	private Date rentalDate;
 
@@ -34,7 +49,7 @@ public class Rental implements Serializable {
 	private Date returnDate;
 
 	//bi-directional many-to-one association to Payment
-	@OneToMany(mappedBy="rental")
+	@OneToMany(mappedBy="rental", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Payment> payments;
 
 	//bi-directional many-to-one association to Customer
@@ -54,6 +69,22 @@ public class Rental implements Serializable {
 
 	public Rental() {
 	}
+	
+
+	public Rental(int rentalId, @PastOrPresent Timestamp lastUpdate, Date rentalDate, Date returnDate,
+			List<Payment> payments, Customer customer, Inventory inventory, Staff staff) {
+		super();
+		this.rentalId = rentalId;
+		this.lastUpdate = lastUpdate;
+		this.rentalDate = rentalDate;
+		this.returnDate = returnDate;
+		this.payments = payments;
+		this.customer = customer;
+		this.inventory = inventory;
+		this.staff = staff;
+	}
+
+
 
 	public int getRentalId() {
 		return this.rentalId;
@@ -93,7 +124,8 @@ public class Rental implements Serializable {
 
 	public void setPayments(List<Payment> payments) {
 		this.payments = payments;
-	}
+		//this.addPayment(new Payment())
+		}
 
 	public Payment addPayment(Payment payment) {
 		getPayments().add(payment);
@@ -101,7 +133,7 @@ public class Rental implements Serializable {
 
 		return payment;
 	}
-
+		
 	public Payment removePayment(Payment payment) {
 		getPayments().remove(payment);
 		payment.setRental(null);
@@ -132,5 +164,30 @@ public class Rental implements Serializable {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(rentalId);
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Rental))
+			return false;
+		Rental other = (Rental) obj;
+		return rentalId == other.rentalId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Rental [rentalId=" + rentalId + ", customer=" + customer + "]";
+	}
+	
+	
 
 }

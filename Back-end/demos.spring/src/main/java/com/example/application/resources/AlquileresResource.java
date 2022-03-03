@@ -3,13 +3,14 @@ package com.example.application.resources;
 import java.net.URI;
 import java.util.List;
 
-import javax.transaction.Transactional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,15 +40,16 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping("/api/peliculas")
+@RequestMapping("/api/alquileres")
 @Api(value = "/peliculas", description = "Mantenimiento de películas", produces = "application/json, application/xml", consumes="application/json, application/xml")
-public class PeliculasResource {
+public class AlquileresResource {
 	@Autowired
 	private PeliculasService srv;
 
 
 	@GetMapping
 	@ApiOperation(value = "Listado de las películas")
+	@Transactional (readOnly = true) // si solo queremos hacer solo lectura por la base de datos
 	public List<PeliculaShortDTO> getAll() {
 		return srv.getByProjection(PeliculaShortDTO.class);
 	}
