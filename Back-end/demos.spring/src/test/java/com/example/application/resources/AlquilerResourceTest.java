@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 
 import com.example.application.dtos.AlquileresEditDTO;
+import com.example.application.dtos.PagosEditDTO;
 import com.example.application.dtos.AlquileresEditDTO;
 import com.example.domains.contracts.services.AlquileresService;
 import com.example.exceptions.DuplicateKeyException;
@@ -34,8 +36,8 @@ class AlquilerResourceTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		listado = new ArrayList<AlquileresEditDTO>();
-		listado.add(new AlquileresEditDTO(1, "uno", "auno"));
-		listado.add(new AlquileresEditDTO(2, "dos", "ados"));
+		listado.add(new AlquileresEditDTO(1, 1, 1, 1, new Date(), new Date(), List.of(new PagosEditDTO(0, 0, null, null))));
+		listado.add(new AlquileresEditDTO(2, 2, 2, 2, new Date(), new Date(), List.of(new PagosEditDTO(1, 1, null, null))));
 	}
 
 	public static class IoCTestConfig {
@@ -44,8 +46,8 @@ class AlquilerResourceTest {
 			return mock(AlquileresService.class);
 		}
 		@Bean
-		ActorResource getRest() {
-			return new ActorResource();
+		AlquileresResource getRest() {
+			return new AlquileresResource();
 		}
 	}
 
@@ -57,7 +59,7 @@ class AlquilerResourceTest {
 		AlquileresService srv;
 		
 		@Autowired
-		ActorResource rest;
+		AlquileresResource rest;
 		
 		@Test
 		void testMock() {
@@ -78,16 +80,16 @@ class AlquilerResourceTest {
 		void testGetOne() throws NotFoundException {
 			when(srv.getOne(1)).thenReturn(AlquileresEditDTO.from(listado.get(0)));
 
-			var rslt = rest.getOne(1);
+			var rslt = rest.getOneEdit(1,null);
 			assertNotNull(rslt);
-			assertEquals(1, rslt.getActorId());
+			assertEquals(1, rslt.getRentalId());
 		}
 
 		@Test
 		void testGetOneNotFound() throws NotFoundException {
 			when(srv.getOne(1)).thenThrow(NotFoundException.class);
 			
-			assertThrows(NotFoundException.class, () -> rest.getOne(1));
+			assertThrows(NotFoundException.class, () -> rest.getOneEdit(1,null));
 		}
 
 		@Test
@@ -131,7 +133,7 @@ class AlquilerResourceTest {
 		}
 		@Test
 		void testUpdateInvalidData() throws NotFoundException, InvalidDataException {
-			assertThrows(InvalidDataException.class, () -> rest.update(1, new AlquileresEditDTO()));
+			assertThrows(InvalidDataException.class, () -> rest.update(1, new AlquileresEditDTO(2, 2, 2, 2, new Date(), new Date(), null)));
 		}
 
 		@Test
