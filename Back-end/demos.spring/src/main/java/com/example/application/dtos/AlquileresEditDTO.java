@@ -42,11 +42,13 @@ public class AlquileresEditDTO {
 	private int empleado;
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	@JsonProperty("Fecha de Alquiler")
+	@ApiModelProperty(value = "Formato fecha yyyy-MM-dd hh:mm:ss.")
 	private Date rentalDate;
 	@JsonProperty("Fecha devolución")
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	@ApiModelProperty(value = "Formato fecha yyyy-MM-dd hh:mm:ss.")
 	private Date returnDate;
-	private List<Integer> pagos;
+	private List<PagosEditDTO> pagos;
 
 	public static AlquileresEditDTO from(Rental source) {
 		return new AlquileresEditDTO(
@@ -56,7 +58,7 @@ public class AlquileresEditDTO {
 				source.getStaff().getStaffId(),
 				source.getRentalDate(),
 				source.getReturnDate(),
-				source.getPayments().stream().map(item -> item.getPaymentId()).toList()
+				source.getPayments().stream().map(item -> PagosEditDTO.from(item)).toList() //RECORRE LOS PAYMENT Y LOS CONVIERTE A PAGOSEDITDTO
 		);
 	}
 	
@@ -82,15 +84,27 @@ public class AlquileresEditDTO {
 			target.setReturnDate(returnDate);
 			
 			
-//				// Borra los alquileres que sobran
-//				var delAlquiladas = target.getPayments().stream()
-//						.filter(item -> !pagos.contains(item.getPaymentId()))
-//						.toList();
-//				delAlquiladas.forEach(item -> target.removePayment(item));
-////				// Añade los alquileres que falta
-//				pagos.stream()
-//					.filter(idPaymentDTO -> !target.getPayments().stream().anyMatch(alquiler -> alquiler.getPaymentId() == idPaymentDTO))
-////					.forEach(idPaymentDTO -> target.addPayment(new Payment(idPaymentDTO)));
+				// Borra los alquileres que sobran
+				var delAlquiladas = target.getPayments().stream()
+						.filter(entity -> pagos.stream().noneMatch(dto -> entity.getPaymentId()== dto.getPaymentId()))
+						.toList();// buscamos
+				delAlquiladas.forEach(item -> target.removePayment(item)); //borramos
+				
+				
+				//Actualizar los alquileres que faltan
+				target.getPayments().forEach(entity-> {
+					
+					var dto = pagos.stream().filter(item -> item.getPaymentId()== entity.getPaymentId()).findFirst().get();
+					if(entity.getAmount()!= dto.getAmount()) entity.setAmount(dto.getAmount());
+					if(entity.getPaymentDate()!= dto.getFecha_pago()) entity.setPaymentDate(dto.getFecha_pago());
+					if(entity.getStaff().getStaffId()!= dto.getEmpleado()) entity.setStaff(new Staff(dto.getEmpleado()));
+					
+				});
+		
+//				// Añade los alquileres que faltan
+				pagos.stream()
+					.filter(dto -> target.getPayments().stream().noneMatch(entity -> entity.getPaymentId()== dto.getPaymentId()))
+					.forEach(dto -> target.addPayment(PagosEditDTO.from(dto, target)));
 				return target;
 		}
 	}

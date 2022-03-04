@@ -43,10 +43,12 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Column(name="rental_date")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date rentalDate;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="return_date")
+	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Date returnDate;
 
 	//bi-directional many-to-one association to Payment
