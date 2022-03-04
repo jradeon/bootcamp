@@ -65,18 +65,22 @@ public class AlquileresResource {
 				page, content.getTotalElements());
 
 	}
-
+	
+	@Transactional (readOnly = true)
 	@GetMapping(path = "/{id}")
 	public AlquileresDetailsDTO getOneDetails(@PathVariable int id, @RequestParam(required = false, defaultValue = "details") String mode)
 			throws NotFoundException {
 			return AlquileresDetailsDTO.from(srv.getOne(id));
 	}
+	
+	@Transactional (readOnly = true)
 	@GetMapping(path = "/{id}", params = "mode=edit")
-	@ApiOperation(value = "Recupera una película")
+	@ApiOperation(value = "Recupera un alquiler")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "Alquiler encontrado"),
 		@ApiResponse(code = 404, message = "Alquiler no encontrado")
 	})
+	
 	public AlquileresEditDTO getOneEdit(@ApiParam(value = "Identificador del alquiler") @PathVariable int id, 
 			@ApiParam(value = "Versión completa o editable", required = false, allowableValues = "details,edit", defaultValue = "edit") @RequestParam() String mode)
 			throws NotFoundException {
@@ -85,11 +89,11 @@ public class AlquileresResource {
 
 	@PostMapping
 	@Transactional
-	@ApiOperation(value = "Añadir una nueva película")
+	@ApiOperation(value = "Añadir una nuevo alquiler")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "Película añadida"),
+		@ApiResponse(code = 201, message = "Alquiler añadida"),
 		@ApiResponse(code = 400, message = "Error al validar los datos o clave duplicada"),
-		@ApiResponse(code = 404, message = "Película no encontrada")
+		@ApiResponse(code = 404, message = "Alquiler no encontrado")
 	})
 	public ResponseEntity<Object> create(@Valid @RequestBody AlquileresEditDTO item)
 			throws InvalidDataException, DuplicateKeyException, NotFoundException {
@@ -108,7 +112,7 @@ public class AlquileresResource {
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@Transactional
-	@ApiOperation(value = "Modificar una película existente", notes = "Los identificadores deben coincidir")
+	@ApiOperation(value = "Modificar un alquiler existente", notes = "Los identificadores deben coincidir")
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "Alquiler añadido"),
 		@ApiResponse(code = 400, message = "Error al validar los datos o discrepancias en los identificadores"),

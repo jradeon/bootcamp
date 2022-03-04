@@ -33,10 +33,21 @@ import lombok.Value;
 public class PagosEditDTO {
 		@JsonProperty("id")
 		private int paymentId;
+		
+		@NotNull
+		@Positive
+		@ApiModelProperty(value = "Identificador del empleado.")
 		@JsonProperty("Empleado")
 		private int empleado;
+		
+		@NotNull
+		@DecimalMin(value = "0.0", inclusive = false)
+		@Digits(integer = 3, fraction = 2)
+		@ApiModelProperty(value = "Un máximo de 3 dígitos enteros y 2 decimales.")
 		@JsonProperty("total")
 		private BigDecimal amount;
+		
+		@ApiModelProperty(value = "Fecha del pago")
 		@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 		private Date fecha_pago;
 		
