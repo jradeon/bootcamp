@@ -11,6 +11,7 @@ import org.hibernate.annotations.GenerationTime;
 import com.example.domains.core.entities.EntityBase;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Timestamp;
 import java.util.List;
@@ -68,22 +69,21 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 	private Staff staff;
 
 	public Rental() {
-	}
-	
-
-	public Rental(int rentalId, @PastOrPresent Timestamp lastUpdate, Date rentalDate, Date returnDate,
-			List<Payment> payments, Customer customer, Inventory inventory, Staff staff) {
 		super();
+		payments = new ArrayList<Payment>();
+	}
+
+
+	public Rental(int rentalId, @NotNull Date rentalDate, Date returnDate, Customer customer, Inventory inventory,
+			Staff staff) {
+		this();
 		this.rentalId = rentalId;
-		this.lastUpdate = lastUpdate;
 		this.rentalDate = rentalDate;
 		this.returnDate = returnDate;
-		this.payments = payments;
 		this.customer = customer;
 		this.inventory = inventory;
 		this.staff = staff;
 	}
-
 
 
 	public int getRentalId() {

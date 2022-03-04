@@ -15,11 +15,11 @@ public class AlquileresDetailsDTO {
 	@JsonProperty("id")
 	private int rentalId;
 	@JsonProperty("Cliente")
-	private int customer;
+	private String customer;
 	@JsonProperty("Pelicula")
-	private int inventory;
+	private String inventory;
 	@JsonProperty("Empleado")
-	private int empleado;
+	private String empleado;
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	@JsonProperty("Fecha de Alquiler")
 	private Date rentalDate;
@@ -31,17 +31,14 @@ public class AlquileresDetailsDTO {
 	public static AlquileresDetailsDTO from(Rental source) {
 		return new AlquileresDetailsDTO(
 				source.getRentalId(),
-				source.getCustomer().getCustomerId(),
-				source.getInventory().getInventoryId(),
-				source.getStaff().getStaffId(),
+				source.getCustomer().getFirstName() + " " +
+				source.getCustomer().getLastName(),
+				source.getInventory().getFilm().getTitle(), // acceder a través de las tablas
+				source.getStaff().getFirstName() + " " + source.getStaff().getLastName(),
 				source.getRentalDate(),
 				source.getReturnDate(),
 				null
-		// source.getCustomer().getFirstName() + " " +
-		// source.getCustomer().getLastName(),
-		// source.getInventory().getFilm().getTitle(), // acceder a través de las tablas
-		// source.getStaff().getFirstName() + " " + source.getStaff().getLastName(),
-		// source.getRentalDate(),
+		
 
 		);
 	}

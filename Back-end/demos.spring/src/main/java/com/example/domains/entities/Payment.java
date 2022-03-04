@@ -2,6 +2,8 @@ package com.example.domains.entities;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.Timestamp;
@@ -22,6 +24,7 @@ public class Payment implements Serializable {
 	@Column(name="payment_id")
 	private int paymentId;
 
+	@NotNull
 	private BigDecimal amount;
 
 	@Column(name="last_update")
@@ -29,6 +32,7 @@ public class Payment implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="payment_date")
+	@NotNull
 	private Date paymentDate;
 
 	//bi-directional many-to-one association to Customer
@@ -48,6 +52,21 @@ public class Payment implements Serializable {
 
 	public Payment() {
 	}
+	
+
+	public Payment(int paymentId, @NotNull BigDecimal amount, Timestamp lastUpdate, @NotNull Date paymentDate,
+			Customer customer, Rental rental, Staff staff) {
+		super();
+		this.paymentId = paymentId;
+		this.amount = amount;
+		this.lastUpdate = lastUpdate;
+		this.paymentDate = paymentDate;
+		this.customer = customer;
+		this.rental = rental;
+		this.staff = staff;
+	}
+
+
 
 	public int getPaymentId() {
 		return this.paymentId;
@@ -104,5 +123,14 @@ public class Payment implements Serializable {
 	public void setStaff(Staff staff) {
 		this.staff = staff;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Payment [paymentId=" + paymentId + ", paymentDate=" + paymentDate + ", customer=" + customer
+				+ ", rental=" + rental + ", staff=" + staff + "]";
+	}
+	
+	
 
 }

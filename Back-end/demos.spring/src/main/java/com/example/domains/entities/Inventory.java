@@ -40,6 +40,15 @@ public class Inventory implements Serializable {
 
 	public Inventory() {
 	}
+	
+	
+
+	public Inventory(int inventoryId) {
+		super();
+		this.inventoryId = inventoryId;
+	}
+
+
 
 	public int getInventoryId() {
 		return this.inventoryId;
