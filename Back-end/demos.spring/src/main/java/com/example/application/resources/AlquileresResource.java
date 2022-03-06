@@ -28,7 +28,6 @@ import com.example.application.dtos.AlquileresDetailsDTO;
 import com.example.application.dtos.AlquileresEditDTO;
 import com.example.application.dtos.AlquileresShortDTO;
 import com.example.domains.contracts.services.AlquileresService;
-import com.example.domains.contracts.services.PeliculasService;
 import com.example.exceptions.DuplicateKeyException;
 import com.example.exceptions.InvalidDataException;
 import com.example.exceptions.NotFoundException;
@@ -49,14 +48,15 @@ public class AlquileresResource {
 	private AlquileresService srv;
 
 
-	@GetMapping
+	@GetMapping 
 	@ApiOperation(value = "Listado alquileres")
 	@Transactional (readOnly = true) // si solo queremos hacer solo lectura por la base de datos
 	public List<AlquileresShortDTO> getAll() {
-		return srv.getByProjection(AlquileresShortDTO.class);
+//		return srv.getByProjection(AlquileresShortDTO.class);
+		return srv.getAll().stream().map(item -> AlquileresShortDTO.from(item)).toList();
 	}
 
-	@GetMapping(params = "page")
+	@GetMapping(path = "/{page}", params = "page")
 	@ApiOperation(value = "Listado paginable de alquileres")
 	@Transactional (readOnly = true)
 	public Page<AlquileresShortDTO> getAll(@ApiParam(required = false) Pageable page) {
