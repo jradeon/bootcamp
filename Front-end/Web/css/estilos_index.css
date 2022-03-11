@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Varela Round', sans-serif;
+  }
+
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0px;
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 50px;
+}
+
+.boton{
+    padding: 10px 25px;
+    background-color: #ff2753; 
+    border-radius: 50px;
+    color: #fff;
+}
+
+.boton:hover{
+    background-color: #4a3866;
+    color: #fff;
+}
+
+a:hover{
+    color: #ff2753;
+}
+
+li{
+    display: inline-block;
+    padding: 0px 20px;
+    list-style: none;
+}
+
+a{
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #4a3866;
+    transition: all 0.3s;
+}
+
+main{
+    display: flex;
+    /* si tenemos más de un contenedor con justify content center */
+    margin-left:auto;
+    margin-right: auto;
+    width: 50%;
+
+   
+}
