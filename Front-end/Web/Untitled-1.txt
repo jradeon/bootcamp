@@ -1,0 +1,42 @@
+
+#id
+.class
+
+* se aplica a todas las etiquetas
+
+etiqueta1 etiqueta2 {
+    esto es que a las 2 etiquetas se aplica ese estilo
+}
+
+E1+E2 
+
+SELECTO:PSEUDO{
+
+}
+ ej --> a:hover{
+               color: #ff2753;
+          }
+
+.formularios main> h1 { significa que a primer nivel a todos los padres se le aplica
+
+}
+
+h1 + p::first-letter { el más significa que solo se le aplicaría al siguiente osea al primero
+
+}
+
+@ media print { //media es para en la vista sprint o screen etc aplicar esto, en este caso que no se
+                              
+                                  visualice con el display.
+    body {
+        font-size: 20pt!important;
+    }
+    input[type=submit], input[type=reset], buttom {
+        display:none;
+    }
+}
+
+si queremos que los cambios del css se le aplique solo al media print, en la versión imprimir
+en el link donde se le especifica el estilo css ponemos media= "print"
+
+el !important prioriza sobre los otros...
