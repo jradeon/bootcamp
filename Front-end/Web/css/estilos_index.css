@@ -31,7 +31,7 @@ a:hover{
 
 li{
     display: inline-block;
-    padding: 0px 20px;
+    padding: 0px 50px;
     list-style: none;
 }
 
@@ -50,6 +50,8 @@ main{
     margin-left:auto;
     margin-right: auto;
     width: 50%;
+}
 
-   
+main+ p::first-letter {
+ text-align: justify;
 }
