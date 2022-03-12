@@ -9,7 +9,8 @@ header{
     justify-content: space-around;
     align-items: center;
     padding: 10px 0px;
-    border-bottom: 1px solid #dedede;
+    border-bottom: 3px solid #dedede5e;
+    background-color: #2a292c;
     margin-bottom: 50px;
 }
 
@@ -31,7 +32,7 @@ a:hover{
 
 li{
     display: inline-block;
-    padding: 0px 50px;
+    padding: 0px 60px;
     list-style: none;
 }
 
@@ -40,7 +41,7 @@ a{
     text-decoration: none;
     text-transform: uppercase;
     font-weight: 700;
-    color: #4a3866;
+    color: #FFFFFFFF;
     transition: all 0.3s;
 }
 
@@ -49,9 +50,41 @@ main{
     /* si tenemos más de un contenedor con justify content center */
     margin-left:auto;
     margin-right: auto;
-    width: 50%;
+    width: 70%;
 }
 
-main+ p::first-letter {
- text-align: justify;
+main img{
+   width: 1050px;
+   height: 380px;
+   margin-bottom: 50px;
+}
+
+body {
+    background-color: #dededebd;
+}
+
+.logo{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    margin-bottom: auto;
+}
+
+footer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0px;
+    border-top: 3px solid #2a292c;
+    background-color:  #ffc64042;
+    margin-top: 0px;
+}
+
+footer a:hover {
+    color: #2a292c;
+}
+
+#pizzaxpress{
+  font-size: xx-large;  
 }

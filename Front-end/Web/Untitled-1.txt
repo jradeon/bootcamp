@@ -40,3 +40,16 @@ si queremos que los cambios del css se le aplique solo al media print, en la ver
 en el link donde se le especifica el estilo css ponemos media= "print"
 
 el !important prioriza sobre los otros...
+
+--> Para poner tamaño al texto lo mejor es el em si lo * por algo lo estoy haciendo más grande respecto a su 
+tamaño 
+
+--Aquí---------------------------------------------------
+<picture>
+  <source media="(min-width:650px)" srcset="img_pink_flowers.jpg">
+  <source media="(min-width:465px)" srcset="img_white_flower.jpg">
+  <img src="img_orange_flowers.jpg" alt="Flowers" style="width:auto;">
+</picture>
+--> Podemos adecuar las fotografías al tamaño del dispositivo
+
+--output-- etiqueta de la salida para usar con javascript <-- IMPORTANTE
