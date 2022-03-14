@@ -5,6 +5,7 @@
   }
 
 header{
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -46,17 +47,19 @@ a{
 }
 
 main{
-    display: flex;
     /* si tenemos más de un contenedor con justify content center */
     margin-left:auto;
     margin-right: auto;
-    width: 70%;
+    width: 90%;
 }
 
 main img{
-   width: 1050px;
+   width: 90%;
    height: 380px;
    margin-bottom: 50px;
+   margin-left: 5%;
+   margin-right: 5%;
+
 }
 
 body {
@@ -72,6 +75,7 @@ body {
 }
 
 footer{
+    width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
