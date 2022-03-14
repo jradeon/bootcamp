@@ -85,6 +85,10 @@ footer{
     margin-top: 0px;
 }
 
+.footer2{
+    height: 40px;
+}
+
 footer a:hover {
     color: #2a292c;
 }
