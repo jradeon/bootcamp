@@ -23,6 +23,10 @@
         justify-content: left !important;
         align-content: stretch;
     }
+
+    .footer2{
+        height: auto;
+    }
  }
 @media all and (min-width: 480px) and (max-width: 767px){
     header li {
@@ -41,6 +45,10 @@
         flex-direction: row;
         justify-content: left !important;
         
+    }
+
+    .footer2{
+        height: auto;
     }
 
     nav {
@@ -69,5 +77,9 @@
         flex-wrap: nowrap;
         flex-direction: row;
         justify-content: left !important;
+    }
+
+    .footer2{
+        height: auto;
     }
  }
