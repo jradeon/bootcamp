@@ -1,0 +1,38 @@
+@media all and (min-width:1200px){ 
+
+ }
+@media all and (min-width: 960px) and (max-width: 1199px) {
+
+  }
+
+
+@media all and (min-width: 768px) and (max-width: 959px) { 
+
+ }
+@media all and (min-width: 480px) and (max-width: 767px){
+    header li {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: left !important;
+    }
+
+    footer li {
+        display: flex;
+        flex-wrap: nowrap;
+        flex-direction: row;
+        justify-content: left !important;
+    }
+
+
+
+    
+    header img {
+        display: flex;
+        flex-direction: column;
+    }
+  }
+@media all and (max-width: 479px) { 
+
+ }
+}
