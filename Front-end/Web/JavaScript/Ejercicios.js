@@ -67,6 +67,7 @@ function esPrimo(numero) {
   return true;
 }
 
+
 function damePrimos(cuantos) {
   let primos = [];
   for (let x = 2; x; x++) {

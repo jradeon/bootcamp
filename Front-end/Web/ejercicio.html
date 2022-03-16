@@ -27,7 +27,33 @@ inicializados al valor suministrado.
         // console.log(DameArray(5,"Hola Mundo"))
         // console.log(damePrimos(+prompt("dime cuantos"))) // con el + equivale al parseInt o float
         // console.log(Dni("12345678")) 
-        console.log(palindromeChecker("oso"))
+        // console.log(palindromeChecker("oso"))
+
+        // var juego = new Juego(10, 100);
+        var juego = new JuegoConClase(10, 100);
+        console.log(typeof(JuegoConClase))
+        console.log(juego)
+        do {
+            do {
+                var numeroLeido = prompt(`Dame tu número ${juego.intentos + 1} de ${juego.DameMaxIntentos()}:`);
+                if (numeroLeido === null)
+                    break;
+                if (isNaN(parseInt(numeroLeido))) {
+                    alert('No es un número valido');
+                    continue;
+                }
+                try {
+                    juego.PruebaCon(+numeroLeido);
+                } catch (error) {
+                    alert('ERROR: ' + error.message + '\n' + juego.mensaje)
+                    break;
+                }
+                alert(juego.mensaje);
+            } while (juego.intentos < 10 && !juego.encontrado);
+            if (!confirm('¿Otra?'))
+                break;
+            juego.Inicializa();
+        } while (true);
 
      </script>
  </body>
