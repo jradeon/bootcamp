@@ -30,3 +30,8 @@
         width: 20px !important;
         height: 20px !important; 
  }
+
+
+ .cuadro { 
+   border: 1px blue dotted , padding 10px 5px; 
+  }

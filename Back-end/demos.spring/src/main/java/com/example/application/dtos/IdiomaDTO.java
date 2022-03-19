@@ -15,11 +15,15 @@ public class IdiomaDTO {
 	private String name;
 	
 	public static Language from(IdiomaDTO source) {
-		return new Language(source.getLanguageId(), source.getName());
+		return new Language(
+				source.getLanguageId(),
+				source.getName());
 	}
 	
 	public static IdiomaDTO from(Language source) {
-		return new IdiomaDTO(source.getLanguageId(), source.getName());
+		return new IdiomaDTO(
+				source.getLanguageId(), 
+				source.getName());
 	}
 
 }

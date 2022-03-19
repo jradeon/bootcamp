@@ -39,7 +39,6 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	private Timestamp lastUpdate;
 	
-	
 	@Temporal(TemporalType.TIMESTAMP)
 	@NotNull
 	@Column(name="rental_date")
@@ -75,7 +74,7 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 		payments = new ArrayList<Payment>();
 	}
 
-
+	
 	public Rental(int rentalId, @NotNull Date rentalDate, Date returnDate, Customer customer, Inventory inventory,
 			Staff staff) {
 		this();
@@ -85,6 +84,7 @@ public class Rental extends EntityBase<Rental> implements Serializable {
 		this.customer = customer;
 		this.inventory = inventory;
 		this.staff = staff;
+		
 	}
 
 
