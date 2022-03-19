@@ -1,7 +1,7 @@
 //FUNCIÓN Math.floor: redondea al número entero menor.
 //FUNCIÓN Math.random: devuelve un número aleatorio mayor que 0 y menor que 1
 
-// Ejercico 1
+// Ejercicio 1
 
 function NumAleatorio() {
   let num;
@@ -122,7 +122,7 @@ Crear la clase del juego Adivina el Número */
 //FUNCIÓN CONSTRUCTORA
 
 function Juego(maxIntentos, valores) {
-  var numeroBuscado;
+  let numeroBuscado;
   this.intentos;
   this.encontrado;
   this.mensaje;

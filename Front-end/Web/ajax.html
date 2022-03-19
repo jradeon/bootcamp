@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo Ajax</title>
+</head>
+<body>
+    <main>
+        <h1>Películas</h1>
+        <section id="listado"></section>
+        <section id="paginación"></section>
+    </main>
+    <img id="img" src="./images/pizza-barbacoa.png" alt="pizza">
+
+    <script>
+        function cargaPagina(page=0){
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4)  {
+                if (xmlhttp.readyState == 200){
+                    let resp = JSON.parse(xmlhttp.responseText);
+                    let listado = '<ul>'
+                        for (let peli of resp.content)
+                        listado += `<li>${peli.titulo}</li>´
+                        listado = `<ul>´
+                            document.querySelector('#listado').innerHTML = listado;                         
+                        } else {
+                            document.querySelector('#listado').textContent = xmlhttp.status
+                        }
+                    }
+            }
+            document.querySelector('#img').hidden = false;
+            document.querySelector('#listado').hidden = true;
+            xmlhttp.open('get', `http://localhost:8001/api/peliculas?page=${page}`)
+            xmlhttp.send()
+
+        }
+        cargaPagina(0);
+    </script>
+</body>
+</html>
