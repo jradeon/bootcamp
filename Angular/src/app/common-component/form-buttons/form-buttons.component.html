@@ -1,0 +1,15 @@
+<div class="form-group">
+  <input
+    type="button"
+    class="btn btn-success"
+    value="Enviar"
+    (click)="send.emit()"
+    [disabled]="disabled"
+  />
+  <input
+    type="button"
+    class="btn btn-info"
+    value="Volver"
+    (click)="cancel.emit()"
+  />
+</div>
